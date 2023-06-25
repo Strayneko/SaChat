@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { Link } from "@inertiajs/vue3";
+import { Link } from '@inertiajs/vue3'
 </script>
 
 <template>
     <div
-        class="flex items-center gap-4 border-b border-gray-200 px-7 pb-3 pt-8"
+        class="sticky top-0 z-50 flex items-center gap-4 border-b border-gray-200 bg-white px-7 pb-3 pt-8"
     >
-        <span>
+        <Link
+            :href="route('welcome')"
+            class="rounded p-1 transition hover:bg-gray-100"
+        >
             <svg
                 width="24"
                 height="25"
@@ -31,7 +34,7 @@ import { Link } from "@inertiajs/vue3";
                     stroke-linejoin="round"
                 />
             </svg>
-        </span>
+        </Link>
 
         <div class="flex flex-1 items-center justify-between">
             <div class="flex items-center gap-5">
@@ -45,7 +48,7 @@ import { Link } from "@inertiajs/vue3";
                 </div>
 
                 <div>
-                    <h3 class="text-xl font-bold text-primary">MiChat</h3>
+                    <h3 class="text-xl font-bold text-primary">Ini Chat</h3>
                     <div class="flex items-center gap-1">
                         <svg
                             width="6"
@@ -65,7 +68,12 @@ import { Link } from "@inertiajs/vue3";
             </div>
 
             <div>
-                <Link :href="route('logout')" as="button" method="post">
+                <Link
+                    :href="route('logout')"
+                    as="button"
+                    method="post"
+                    class="rounded p-2 hover:bg-gray-100"
+                >
                     <svg
                         fill="#000000"
                         viewBox="0 0 471.2 471.2"

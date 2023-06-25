@@ -1,9 +1,41 @@
 <script setup lang="ts">
+import { onMounted, nextTick } from 'vue'
+import { Head } from '@inertiajs/vue3'
 import TheChat from '@/Components/Chat/TheChat.vue'
+import useChatStore from '@/Stores/ChatStore'
+import { MessageData, Chat } from '@/types/chat'
+import moment from 'moment'
+
+const props = defineProps({ messages: Array })
+const chats = useChatStore()
+chats.setMessages(props.messages)
+const updateMessage = async (message: any) => {
+    const data: MessageData = {
+        id: null,
+        user_id: message.user_id,
+        message: message.message,
+        user: {
+            name: message.user.name,
+            id: message.user_id,
+        },
+        created_at: moment.now(),
+        updated_at: null,
+    }
+    chats.pushMessages(data)
+}
+onMounted(() => {
+    window.Channel.bind('message', async (data: { chat: MessageData }) => {
+        chats.markSendedMessage(data?.chat)
+        await nextTick()
+        chats.chatRef?.scrollTo(0, chats.chatRef.scrollHeight ?? 0)
+        // chats.pushMessages(data.chat)
+    })
+})
 </script>
 
 <template>
-    <section class="h-screen w-full bg-gray-700 lg:py-6">
-        <TheChat />
+    <Head title="Chats" />
+    <section class="relative h-screen w-full bg-gray-700 lg:py-6">
+        <TheChat @send-message="updateMessage" />
     </section>
 </template>

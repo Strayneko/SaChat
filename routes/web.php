@@ -24,11 +24,16 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
 
-Route::get('/chat', [ChatController::class, 'index'])
-    ->name('chat')
-    ->middleware('auth');
+Route::prefix('chat')
+    ->name('chat.')
+    ->controller(ChatController::class)
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/store', 'store')->name('store');
+    });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
