@@ -7,7 +7,7 @@ defineProps({
 </script>
 <template>
     <section
-        class="relative mx-auto h-full w-full overflow-y-auto bg-white px-5 shadow-xl lg:max-w-sm lg:rounded-2xl"
+        class="relative mx-auto h-full w-full overflow-y-hidden bg-white px-5 shadow-xl lg:max-w-sm lg:rounded-2xl"
     >
         <div class="mt-5 text-center">
             <h1 class="text-2xl font-semibold text-blue-600">IniChat</h1>

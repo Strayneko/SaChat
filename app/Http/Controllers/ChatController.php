@@ -32,6 +32,5 @@ class ChatController extends Controller
     {
         $chat = $this->chatService->store(request()->all());
         SendMessage::dispatch($chat);
-        return redirect()->route('chat.index');
     }
 }

@@ -22,13 +22,15 @@ const updateMessage = async (message: any) => {
         updated_at: null,
     }
     chats.pushMessages(data)
+    await nextTick()
 }
-onMounted(() => {
+onMounted(async () => {
     window.Channel.bind('message', async (data: { chat: MessageData }) => {
         chats.markSendedMessage(data?.chat)
         await nextTick()
         chats.chatRef?.scrollTo(0, chats.chatRef.scrollHeight ?? 0)
         // chats.pushMessages(data.chat)
+        document.querySelector<HTMLInputElement>('#inputChat')?.focus()
     })
 })
 </script>
