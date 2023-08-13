@@ -2,15 +2,14 @@
 import TextInput from '../TextInput.vue'
 import { useForm, usePage, InertiaForm } from '@inertiajs/vue3'
 import useChatStore from '@/Stores/ChatStore'
-import { Chat } from '@/types/chat'
-import { ref } from 'vue';
-import { nextTick } from 'vue';
+import { v4 as uuidv4 } from 'uuid'
 
 const page = usePage()
 
 const form = useForm({
     message: '',
     user_id: page.props?.auth?.user?.id,
+    uuid: 0,
     user: {
         name: page.props?.auth?.user?.name,
     },
@@ -20,8 +19,11 @@ const emit = defineEmits(['sendMessage'])
 
 const chat = useChatStore()
 const submit = async () => {
+    form.uuid = uuidv4()
+
     emit('sendMessage', form.data())
     chat.send(form)
+    form.reset()
 }
 </script>
 <template>
