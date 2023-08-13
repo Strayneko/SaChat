@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
+            $table->string('uuid')->nullable()->unique();
             $table->text('message');
             $table->tinyInteger('is_sent')->default(1);
             $table->timestamps();

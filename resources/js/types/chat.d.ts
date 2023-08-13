@@ -8,6 +8,7 @@ export type Chat = InertiaForm<{
 export interface MessageData {
     message: string
     user_id: number
+    uuid: string
     id: ?number
     created_at: ?(string | number)
     updated_at: ?string
