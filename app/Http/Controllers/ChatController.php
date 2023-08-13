@@ -19,6 +19,8 @@ class ChatController extends Controller
     {
         $messages = $this->chatService->fetchAllMessage();
         $messages = $messages->map(function (Chat $message) {
+
+            // get message along with the user name
             $message->user = $message->user->only('name');
             return $message;
         });
@@ -30,6 +32,9 @@ class ChatController extends Controller
 
     public function store()
     {
+        request()->validate([
+            'message' => 'required'
+        ]);
         $chat = $this->chatService->store(request()->all());
         SendMessage::dispatch($chat);
     }
