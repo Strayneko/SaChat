@@ -9,8 +9,8 @@ const page = usePage()
 <template>
     <div class="relative my-4 min-h-[33rem] space-y-4 px-4">
         <SingleChat
-            v-for="chat in messages"
-            :key="chat.id ?? 0"
+            v-for="(chat, index) in messages"
+            :key="index"
             :isSent="chat.id !== null"
             :sender="chat.user?.name"
             :time="`${chat.created_at}`"

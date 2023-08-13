@@ -13,15 +13,20 @@ const useChatStore = defineStore('messages', {
             this.messages = messages
         },
         pushMessages(message: MessageData) {
-            this.messages.push(message)
+            if (message.message?.length > 0 && message.message != null) {
+                this.messages.push(message)
+            }
         },
         markSendedMessage(message: MessageData) {
-            if (this.messages.length === 0 || this.messages === null) return
-            if (this.messages[this.lastMessage].id === null) {
-                this.messages[this.lastMessage] = message
-                return
+            this.messages.forEach((chat, index) => {
+                if (chat.uuid == message.uuid) {
+                    this.messages[index] = message
+                }
+            })
+
+            if (this.messages[this.lastMessage].uuid != message.uuid) {
+                this.pushMessages(message)
             }
-            this.pushMessages(message)
         },
         send(form: Chat) {
             form.post(route('chat.store'))
