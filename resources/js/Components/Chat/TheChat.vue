@@ -32,7 +32,7 @@ onMounted(() => {
 
 <template>
     <section
-        class="the-chat relative mx-auto h-full w-full overflow-y-auto bg-white shadow-xl lg:max-w-sm lg:rounded-2xl"
+        class="the-chat relative mx-auto h-full w-full overflow-y-auto bg-white shadow-xl lg:max-w-md lg:rounded-2xl"
         ref="theChatRef"
     >
         <!-- header -->
