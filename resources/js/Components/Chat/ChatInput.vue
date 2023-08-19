@@ -9,7 +9,7 @@ const page = usePage()
 const form = useForm({
     message: '',
     user_id: page.props?.auth?.user?.id,
-    uuid: 0,
+    uuid: '0',
     user: {
         name: page.props?.auth?.user?.name,
     },

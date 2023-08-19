@@ -4,6 +4,7 @@ import { Head } from '@inertiajs/vue3'
 import TheChat from '@/Components/Chat/TheChat.vue'
 import useChatStore from '@/Stores/ChatStore'
 import { MessageData, Chat } from '@/types/chat'
+import ChatLayout from '@/Layouts/ChatLayout.vue'
 import moment from 'moment'
 
 const props = defineProps({ messages: Array })
@@ -27,6 +28,7 @@ const updateMessage = async (message: any) => {
     chats.pushMessages(data)
     await nextTick()
 }
+
 onMounted(async () => {
     window.Channel.bind('message', async (data: { chat: MessageData }) => {
         chats.markSendedMessage(data?.chat)
@@ -40,8 +42,8 @@ onMounted(async () => {
 </script>
 
 <template>
-    <Head title="Chats" />
-    <section class="relative h-screen w-full bg-gray-700 lg:py-6">
+    <ChatLayout>
+        <Head title="Chats" />
         <TheChat @send-message="updateMessage" />
-    </section>
+    </ChatLayout>
 </template>

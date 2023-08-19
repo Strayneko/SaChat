@@ -7,7 +7,7 @@ let { messages } = useChatStore()
 const page = usePage()
 </script>
 <template>
-    <div class="relative my-4 min-h-[33rem] space-y-4 px-4">
+    <div class="relative my-4 min-h-[33rem] space-y-4 px-4 lg:min-h-[75%]">
         <SingleChat
             v-for="(chat, index) in messages"
             :key="index"

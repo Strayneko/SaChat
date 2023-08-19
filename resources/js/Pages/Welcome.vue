@@ -2,6 +2,7 @@
 import TheWelcome from '@/Components/Welcome/TheWelcome.vue'
 import { Auth } from '@/types'
 import { Head, Link } from '@inertiajs/vue3'
+import ChatLayout from '@/Layouts/ChatLayout.vue'
 const { auth } = defineProps<{
     auth?: Auth
 }>()
